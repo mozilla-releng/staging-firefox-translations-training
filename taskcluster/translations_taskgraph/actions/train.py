@@ -66,6 +66,7 @@ def validate_pretrained_models(params):
     cb_name="train",
     order=500,
     context=[],
+    permission="train",
     available=can_train,
     schema=lambda graph_config: {
         "type": "object",
