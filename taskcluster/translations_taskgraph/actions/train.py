@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import collections.abc
 import json
 import logging
 
@@ -56,6 +57,15 @@ def validate_pretrained_models(params):
                 f"must be equal to one (1). "
                 f"The pipeline's backward model is _not_ an ensemble."
             )
+
+
+def deep_update(d, u):
+    for k, v in u.items():
+        if isinstance(v, collections.abc.Mapping):
+            d[k] = deep_update(d.get(k, {}), v)
+        else:
+            d[k] = v
+    return d
 
 
 @register_callback_action(
@@ -398,6 +408,7 @@ def train_action(parameters, graph_config, input, task_group_id, task_id):
 
     parameters = dict(parameters)
 
+    input = deep_update(defaults, input)
     if not input:
         input = defaults
     start_stage = input.pop("start-stage", None)
