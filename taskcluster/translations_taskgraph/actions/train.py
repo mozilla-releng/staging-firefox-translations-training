@@ -398,6 +398,8 @@ def train_action(parameters, graph_config, input, task_group_id, task_id):
 
     parameters = dict(parameters)
 
+    if not input:
+        input = defaults
     start_stage = input.pop("start-stage", None)
     if start_stage:
         if "previous_group_ids" not in input:
