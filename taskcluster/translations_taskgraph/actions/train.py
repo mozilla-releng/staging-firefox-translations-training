@@ -408,9 +408,13 @@ def train_action(parameters, graph_config, input, task_group_id, task_id):
 
     parameters = dict(parameters)
 
+    from pprint import pprint
+    print("before")
+    pprint(input)
+    pprint(defaults)
     input = deep_update(defaults, input)
-    if not input:
-        input = defaults
+    print("after")
+    pprint(input)
     start_stage = input.pop("start-stage", None)
     if start_stage:
         if "previous_group_ids" not in input:
