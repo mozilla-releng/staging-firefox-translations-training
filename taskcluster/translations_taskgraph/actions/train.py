@@ -391,12 +391,6 @@ to be translated by the backward model to augment teacher corpus with back-trans
                 },
             },
         },
-        "required": [
-            "target-stage",
-            "datasets",
-            "experiment",
-            "marian-args",
-        ],
     },
 )
 def train_action(parameters, graph_config, input, task_group_id, task_id):
