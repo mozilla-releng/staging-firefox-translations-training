@@ -1,0 +1,6 @@
+jobs:
+  - name: run-pipeline
+    job:
+      type: trigger-action
+      action-name: train
+      include-cron-input: true
