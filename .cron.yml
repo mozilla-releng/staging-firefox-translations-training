@@ -4,3 +4,5 @@ jobs:
       type: trigger-action
       action-name: train
       include-cron-input: true
+      extra-input:
+        wandb-publication: false
