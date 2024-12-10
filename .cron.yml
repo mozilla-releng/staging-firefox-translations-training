@@ -1,8 +1,7 @@
 jobs:
   - name: run-pipeline
     job:
-      type: trigger-action
-      action-name: train
-      include-cron-input: true
-      extra-input:
-        wandb-publication: false
+      type: decision-task
+      # we don't use treeherder...but this is a required field
+      treeherder-symbol: pipeline
+      target-tasks-method: train-target-tasks
